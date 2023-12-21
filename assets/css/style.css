@@ -1,25 +1,46 @@
-header {
-    background-color: aqua;
-    color: aliceblue;
-    font-size: large;
-}
 
-.card {
+
+
+header {
+    background-color: rgb(117, 104, 67);
+    color: aliceblue;
+    font-size: 3rem;
+    padding: 25px;
+}git 
+
+.card-weather {
     font-size: large;
     font-family: 'Courier New', Courier, monospace;
-    background-color: rgb(172, 221, 221);
+    background-color: rgb(216, 204, 136);
     color: rgb(68, 68, 68);
+    margin: 20px;
+    padding: 50px 50px;
+    border-radius: 5px;
+    border-style: double;
 }
 
-.card:hover {
+.card-calender {
+    font-size: large;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: rgb(216, 204, 136);
+    color: rgb(68, 68, 68);
+    margin: 20px;
+    padding: 50px 50px;
+    border-radius: 5px;
+    border-style: double;
+}
+
+
+.card-weather:hover {
     font-size: large;
     font-family: 'Courier New', Courier, monospace;
     background-color: bisque;
     color: rgb(68, 68, 68);
 }
-feature
+
 h1 {
     font-size: large;
-    background-color: rgb(54, 54, 54);
-    color: aliceblue;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: bisque;
+    color: rgb(68, 68, 68);
 }
