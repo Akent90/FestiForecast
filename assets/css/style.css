@@ -36,6 +36,7 @@ header {
     font-family: 'Courier New', Courier, monospace;
     background-color: bisque;
     color: rgb(68, 68, 68);
+    cursor: pointer;
 }
 
 h1 {
