@@ -1,9 +1,10 @@
-var submitButton = document.querySelector("get info");
+var inputValue = document.querySelector("#inputLocation");
+var submitButton = document.querySelector("#submitButton")
 
 renderLastRegistered();
 
 function renderLastRegistered() {
-    var submitButton = localStorage.getItem("get info");
+    var submitButton = localStorage.getItem("#get-info");
 
     if (!submitButton || "" ) {
         return;
@@ -12,11 +13,11 @@ function renderLastRegistered() {
 
 submitButton.addEventListener("click", function(event) {
     event.preventDefault();
+    
+    var input = inputValue.value;
 
-    var submitButton = submitButtonInput.value;
-
-    if (submitButton === "") {
-        displayMessage("Please select a date.")
+    if (input === "") {
+        alert("Please select a date.")
 
         localStorage.setItem("submitButton", "date");
         renderLastRegistered();
