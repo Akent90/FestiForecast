@@ -9,10 +9,6 @@ function displayMessage(type, message) {
 
 function renderLastRegistered() {
     var submitButton = localStorage.getItem("get info");
-
-    if (!submitbutton || ) {
-        return;
-    }
     submitButton.textContent = submitButton;
 }
 
