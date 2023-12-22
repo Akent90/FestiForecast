@@ -1,8 +1,8 @@
 var submitButton = document.querySelector("get info");
 
-renderRegistered();
+renderLastRegistered();
 
-function renderRegistered() {
+function renderLastRegistered() {
     var submitButton = localStorage.getItem("get info");
 
     if (!submitButton || "" ) {
@@ -19,6 +19,6 @@ submitButton.addEventListener("click", function(event) {
         displayMessage("Please select a date.")
 
         localStorage.setItem("submitButton", "date");
-        renderRegistered();
+        renderLastRegistered();
     }
 });
