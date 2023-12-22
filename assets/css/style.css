@@ -6,7 +6,7 @@ header {
     color: aliceblue;
     font-size: 3rem;
     padding: 25px;
-}git 
+}
 
 .card-weather {
     font-size: large;
@@ -38,7 +38,7 @@ header {
     color: rgb(68, 68, 68);
 }
 
-.card-calender:hover {
+h1 {
     font-size: large;
     font-family: 'Courier New', Courier, monospace;
     background-color: bisque;
