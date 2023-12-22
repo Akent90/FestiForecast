@@ -6,7 +6,7 @@ header {
     color: aliceblue;
     font-size: 3rem;
     padding: 25px;
-}git 
+}
 
 .card-weather {
     font-size: large;
@@ -17,6 +17,7 @@ header {
     padding: 50px 50px;
     border-radius: 5px;
     border-style: double;
+    flex: wrap;
 }
 
 .card-calender {
@@ -28,8 +29,8 @@ header {
     padding: 50px 50px;
     border-radius: 5px;
     border-style: double;
+    flex: wrap;
 }
-
 
 .card-weather:hover {
     font-size: large;
