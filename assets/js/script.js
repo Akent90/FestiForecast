@@ -7,7 +7,7 @@ const holidayContainer = document.getElementById('holidaySection');
 const weatherContainer = document.getElementById('weatherSection');
 
 function fetchHolidayData(countryCode, year) {
-    const holidayApi = 'https://holidayapi.com/v1/holidays?country=${countryCode}&year=${year}&pretty&key=${holidayApiKey}';
+    const holidayApi = `https://holidayapi.com/v1/holidays?country=${countryCode}&year=${year}&pretty&key=${holidayApiKey}`;
 
     fetch(holidayApiUrl)
     .then(response => response.json())
@@ -16,3 +16,28 @@ function fetchHolidayData(countryCode, year) {
     })
     .catch(error => console.error('Error fetching holiday data: ', error));
 }
+
+function renderLastRegistered() {
+    var lastInput = localStorage.getItem("inputLocation");
+
+    if (!lastInput) {
+        return;
+    }
+    inputLocation.value = lastInput;
+}
+
+submitButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    
+    var input = inputLocation.value;
+
+    if (input === "") {
+        alert("Please select a location.")
+        return;
+    }
+
+    localStorage.setItem("inputLocation", input);
+    renderLastRegistered();
+});
+
+renderLastRegistered();
