@@ -1,6 +1,3 @@
-//local storage, event listener, and alert
-var inputValue = document.querySelector("#inputLocation");
-
 const holidayApiKey = '52dd97a0-dca8-4f8a-bded-86b768341680';
 const weatherApiKey = 'b15a810c1209f985b7d2e24e97487aab';
 
@@ -12,7 +9,7 @@ const weatherContainer = document.getElementById('weatherSection');
 
 function fetchHolidayData(countryCode) {
     const year = new Date().getFullYear();
-    const holidayApi = `https://holidayapi.com/v1/holidays?country=${countryCode}&year=${year}&pretty&key=${holidayApiKey}`;
+    const holidayApiUrl = `https://holidayapi.com/v1/holidays?country=${countryCode}&year=${year}&pretty&key=${holidayApiKey}`;
 
     fetch(holidayApiUrl)
     .then(response => response.json())
@@ -78,10 +75,10 @@ submitButton.addEventListener("click", function(event) {
     event.preventDefault();
     
     var city = inputLocation.value;
-    var countryCode = inputCountryCode.value;
+    var countryCode = inputCountryCode ? inputCountryCode.value : '';
 
-    if (!city || !countryCode) {
-        alert("Please enter both a city and a country code.");
+    if (!city) {
+        alert("Please enter both a city.");
         return;
     }
 
