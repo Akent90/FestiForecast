@@ -1,5 +1,11 @@
+<<<<<<< HEAD
+//local storage, event listener, and alert
+var inputValue = document.querySelector("#inputLocation");
+var submitButton = document.querySelector("#submitButton")
+=======
 const holidayApiKey = '52dd97a0-dca8-4f8a-bded-86b768341680';
 const weatherApiKey = 'b15a810c1209f985b7d2e24e97487aab';
+>>>>>>> 6597d922c981773d9240769163695f534ddbb429
 
 const inputLocation = document.getElementById('inputLocation');
 const inputCountryCode = document.getElementById('inputCountryCode');
@@ -74,8 +80,7 @@ function displayWeather(weatherData) {
 submitButton.addEventListener("click", function(event) {
     event.preventDefault();
     
-    const city = inputLocation.value.trim();
-    const countryCode = inputCountryCode.value.trim().toUpperCase();
+    var input = inputLocation.value;
 
     if (!city || !countryCode) {
         alert("Please enter both a city and a country code.");
@@ -104,3 +109,4 @@ function renderLastRegistered() {
 }
 
 renderLastRegistered();
+>>>>>>> 6597d922c981773d9240769163695f534ddbb429

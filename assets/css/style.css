@@ -2,39 +2,42 @@
 
 
 header {
-    background-color: rgb(117, 104, 67);
+    background-color: rgb(63, 122, 177);
     color: aliceblue;
     font-size: 3rem;
     padding: 25px;
+    border-radius: 5px;
 }
 
 .card-weather {
     font-size: large;
     font-family: 'Courier New', Courier, monospace;
-    background-color: rgb(216, 204, 136);
+    background-color: rgb(125, 212, 247);
     color: rgb(68, 68, 68);
     margin: 20px;
-    padding: 50px 50px;
+    padding: 50px;
     border-radius: 5px;
     border-style: double;
+    width: 200px;
 }
 
 .card-calender {
     font-size: large;
     font-family: 'Courier New', Courier, monospace;
-    background-color: rgb(216, 204, 136);
+    background-color: rgb(125, 212, 247);
     color: rgb(68, 68, 68);
     margin: 20px;
-    padding: 50px 50px;
+    padding: 50px;
     border-radius: 5px;
     border-style: double;
+    display:inline-block;
 }
 
 
 .card-weather:hover {
     font-size: large;
     font-family: 'Courier New', Courier, monospace;
-    background-color: bisque;
+    background-color: rgb(196, 227, 255);
     color: rgb(68, 68, 68);
     cursor: pointer;
 }
@@ -43,7 +46,10 @@ h1 {
     font-size: large;
     font-family: 'Courier New', Courier, monospace;
     background-color: bisque;
-    color: rgb(68, 68, 68);
+    color: rgb(27, 27, 27);
 }
 
+h2 {
+    display: inline-block;  
+}
 
