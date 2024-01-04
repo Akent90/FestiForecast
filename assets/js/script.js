@@ -1,6 +1,3 @@
-//local storage, event listener, and alert
-var inputValue = document.querySelector("#inputLocation");
-var submitButton = document.querySelector("#submitButton")
 const holidayApiKey = '52dd97a0-dca8-4f8a-bded-86b768341680';
 const weatherApiKey = 'b15a810c1209f985b7d2e24e97487aab';
 
@@ -12,7 +9,7 @@ const weatherContainer = document.getElementById('weatherSection');
 
 function fetchHolidayData(countryCode) {
     const year = new Date().getFullYear();
-    const holidayApi = `https://holidayapi.com/v1/holidays?country=${countryCode}&year=${year}&pretty&key=${holidayApiKey}`;
+    const holidayApiUrl = `https://holidayapi.com/v1/holidays?country=${countryCode}&year=${year}&pretty&key=${holidayApiKey}`;
 
     fetch(holidayApiUrl)
     .then(response => response.json())
@@ -66,21 +63,12 @@ function displayWeather(weatherData) {
     weatherCity.textContent = weatherData.name;
 
     const weatherTemp = document.createElement('p');
-    weatherTemp.textContent = `Temperature: ${weatherData.main.temp} °F`;
+    weatherTemp.textContent = `Temperature: ${weatherData.main.temp} °C`;
 
     weatherCard.appendChild(weatherCity);
     weatherCard.appendChild(weatherTemp);
 
     weatherContainer.appendChild(weatherCard);
-}
-
-function renderLastRegistered() {
-    var lastInput = localStorage.getItem("inputLocation");
-
-    if (!lastInput) {
-        return;
-    }
-    inputLocation.value = lastInput;
 }
 
 submitButton.addEventListener("click", function(event) {
@@ -109,8 +97,25 @@ console.log("hello")
         return;
     }
 
-    localStorage.setItem("inputLocation", input);
-    renderLastRegistered();
+    localStorage.setItem("inputLocation", city);
+    localStorage.setItem("inputCountryCode", countryCode);
+
+    fetchHolidayData(countryCode);
+    fetchWeatherData(city);
+
 });
+
+function renderLastRegistered() {
+    const lastCity = localStorage.getItem("inputLocation");
+    const lastCountryCode = localStorage.getItem("inoutCountryCode");
+    
+    if (lastCity) {
+        inputLocation.value = lastCity;
+    }
+
+    if (lastCountryCode) {
+        inputCountryCode.value = lastCountryCode;
+    }
+}
 
 renderLastRegistered();

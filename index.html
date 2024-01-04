@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FestiForecast</title>
-  <link rel="stylesheet" href="./assets/css/style.css" />
-</head>
+  <body>
+    <header>Welcome to FestiForecast!</header>
 
-<body>
-  <header>Welcome to FestiForecast!</header>
+    <main>
+      <section id="inputSection">
+        <input type="text" id="inputLocation" placeholder="Enter your city" />
+        <input
+          type="text"
+          id="inputCountryCode"
+          placeholder="Enter country code"
+        />
+        <button id="submitButton">Get Info</button>
+      </section>
 
   <main>
     <section id="inputSection" class="card card-input">
@@ -36,15 +40,29 @@
         <a class="hourly forecast"
           href="https://weather.com/weather/hourbyhour/l/a05baa5a94807b678c0d9403cbc131381e2b33af1f6264959d7543eaa3b8ed7e">link
         </a>
-    </section>
-    
-  </main>
+      </section>
 
-  <footer>
-    <p>&copy; 2024 FestiForecast</p>
-  </footer>
+      <section>
+        <h2>Upcoming Holidays</h2>
+      </section>
+      <section id="holidaySection" class="card card-calendar">
+        <h2>Holiday Calender</h2>
+      </section>
 
-  <script src="assets/js/script.js"></script>
-</body>
+      <section id="Hourly Forecast" class="card card-hourly">
+        <header>Hourly Forecast</header>
+        <a
+          class="hourly forecast"
+          href="https://weather.com/weather/hourbyhour/l/a05baa5a94807b678c0d9403cbc131381e2b33af1f6264959d7543eaa3b8ed7e"
+          >link
+        </a>
+      </section>
+    </main>
 
+    <footer>
+      <p>&copy; 2024 FestiForecast</p>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+  </body>
 </html>
