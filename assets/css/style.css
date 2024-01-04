@@ -1,24 +1,34 @@
 
-
-
 header {
     background-color: rgb(63, 122, 177);
     color: aliceblue;
     font-size: 3rem;
     padding: 25px;
     border-radius: 5px;
+    width: 100%;
 }
+
+.card-input {
+    width: 100%;
+    background-color: rgb(132, 187, 204);
+    text-align: center;
+    padding: 20px;
+    border-radius: 3px;
+    margin: 5px;
+}
+
 
 .card-weather {
     font-size: large;
     font-family: 'Courier New', Courier, monospace;
     background-color: rgb(125, 212, 247);
     color: rgb(68, 68, 68);
-    margin: 20px;
-    padding: 50px;
+    margin: 10px;
+    padding: 40px;
     border-radius: 5px;
     border-style: double;
-    width: 200px;
+    width: 100%;
+    height: 100px;
 }
 
 .card-calender {
