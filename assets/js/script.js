@@ -17,6 +17,14 @@ function fetchHolidayData(countryCode, year) {
     .catch(error => console.error('Error fetching holiday data: ', error));
 }
 
+function fetchWeatherData(city) {
+    const weatherApiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weatherApiKey}&units=metric';
+    fetch(weatherApiUrl)
+    .then(response => response.json())
+    .then(data => displayWeather(data))
+    .catch(error => console.error('Error fetching weather data:', error));
+}
+
 function renderLastRegistered() {
     var lastInput = localStorage.getItem("inputLocation");
 
