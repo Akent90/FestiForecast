@@ -63,7 +63,7 @@ function displayWeather(weatherData) {
     weatherCity.textContent = weatherData.name;
 
     const weatherTemp = document.createElement('p');
-    weatherTemp.textContent = `Temperature: ${weatherData.main.temp} °F`;
+    weatherTemp.textContent = `Temperature: ${weatherData.main.temp} °C`;
 
     weatherCard.appendChild(weatherCity);
     weatherCard.appendChild(weatherTemp);
