@@ -25,6 +25,31 @@ function fetchWeatherData(city) {
     .catch(error => console.error('Error fetching weather data:', error));
 }
 
+function displayHolidays(holidays) {
+    holidayContainer.innerHTML = '';
+
+    if (holidays.length === 0) {
+        holidayContainer.innerHTML = '<p>No holidays found for this location and year.</p>';
+        return;
+    }
+
+    holidays.forEach(holiday => {
+        const holidayCard = document.createElement('div');
+        holidayCard.className = 'card';
+
+        const holidayName = document.createElement('h3');
+        holidayName.textContent = holiday.name;
+
+        const holidayDate = document.createElement('p');
+        holidayDate.textContent = 'Date: ${holiday.date}';
+
+        holidayCard.appendChild(holidayName);
+        holidayCard.appendChild(holidayDate);
+
+        holidayContainer.appendChild(holidayCard);
+    });
+}
+
 function renderLastRegistered() {
     var lastInput = localStorage.getItem("inputLocation");
 
