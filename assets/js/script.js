@@ -71,27 +71,36 @@ function displayWeather(weatherData) {
     weatherContainer.appendChild(weatherCard);
 }
 
-function renderLastRegistered() {
-    var lastInput = localStorage.getItem("inputLocation");
-
-    if (!lastInput) {
-        return;
-    }
-    inputLocation.value = lastInput;
-}
-
 submitButton.addEventListener("click", function(event) {
     event.preventDefault();
     
-    var input = inputLocation.value;
+    const city = inputLocation.value.trim();
+    const countryCode = inputCountryCode.value.trim().toUpperCase();
 
-    if (input === "") {
-        alert("Please select a location.")
+    if (!city || !countryCode) {
+        alert("Please enter both a city and a country code.");
         return;
     }
 
-    localStorage.setItem("inputLocation", input);
-    renderLastRegistered();
+    localStorage.setItem("inputLocation", city);
+    localStorage.setItem("inputCountryCode", countryCode);
+
+    fetchHolidayData(countryCode);
+    fetchWeatherData(city);
+
 });
+
+function renderLastRegistered() {
+    const lastCity = localStorage.getItem("inputLocation");
+    const lastCountryCode = localStorage.getItem("inoutCountryCode");
+    
+    if (lastCity) {
+        inputLocation.value = lastCity;
+    }
+
+    if (lastCountryCode) {
+        inputCountryCode.value = lastCountryCode;
+    }
+}
 
 renderLastRegistered();
