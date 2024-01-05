@@ -103,8 +103,6 @@ console.log("hello")
     fetchHolidayData(countryCode);
     fetchWeatherData(city);
 
-});
-
 function renderLastRegistered() {
     const lastCity = localStorage.getItem("inputLocation");
     const lastCountryCode = localStorage.getItem("inoutCountryCode");
