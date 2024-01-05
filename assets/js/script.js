@@ -117,5 +117,3 @@ function renderLastRegistered() {
 }
 
 renderLastRegistered();
-
-
