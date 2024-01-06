@@ -1,5 +1,5 @@
-const holidayApiKey = '52dd97a0-dca8-4f8a-bded-86b768341680';
-const weatherApiKey = 'f219ccee11c84093ac709d7de3de5010';
+const holidayApiKey = 'f219ccee11c84093ac709d7de3de5010';
+const weatherApiKey = 'b15a810c1209f985b7d2e24e97487aab';
 
 const inputLocation = document.getElementById('inputLocation');
 const inputCountryCode = document.getElementById('inputCountryCode');
