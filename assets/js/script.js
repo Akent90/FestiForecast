@@ -64,7 +64,7 @@ function displayWeather(weatherData) {
     weatherCard.appendChild(weatherCity);
 
     const weatherTemp = document.createElement('p');
-    weatherTemp.textContent = `Temperature: ${weatherData.main.temp} °C`;
+    weatherTemp.textContent = `Temperature: ${weatherData.main.temp} °F`;
     weatherCard.appendChild(weatherTemp);
 
     const condition = document.createElement('p');
@@ -76,11 +76,11 @@ function displayWeather(weatherData) {
     weatherCard.appendChild(humidity);
 
     const windSpeed = document.createElement('p');
-    windSpeed.textContent = `Wind Speed: ${weatherData.wind.speed} m/s`;
+    windSpeed.textContent = `Wind Speed: ${weatherData.wind.speed} mph`;
     weatherCard.appendChild(windSpeed);
 
     const visibility = document.createElement('p');
-    visibility.textContent = `Visibility: ${weatherData.visibility / 1000} km`;
+    visibility.textContent = `Visibility: ${weatherData.visibility / 1000} mi`;
     weatherCard.appendChild(visibility);
 
     weatherCard.appendChild(weatherTemp);
