@@ -1,5 +1,6 @@
-const holidayApiKey = '52dd97a0-dca8-4f8a-bded-86b768341680';
+const holidayApiKey = 'f219ccee11c84093ac709d7de3de5010';
 const weatherApiKey = 'b15a810c1209f985b7d2e24e97487aab';
+const holidayApiBaseUrl = 'https://holidays.abstractapi.com/v1/';
 
 const inputLocation = document.getElementById('inputLocation');
 const inputCountryCode = document.getElementById('inputCountryCode');
@@ -8,19 +9,28 @@ const holidayContainer = document.getElementById('holidaySection');
 const weatherContainer = document.getElementById('weatherSection');
 
 function fetchHolidayData(countryCode) {
-    const year = new Date().getFullYear();
-    const holidayApiUrl = `https://holidayapi.com/v1/holidays?country=${countryCode}&year=${year}&pretty&key=${holidayApiKey}`;
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0'); 
+    const day = String(today.getDate()).padStart(2, '0');
+
+    const holidayApiUrl = `${holidayApiBaseUrl}?api_key=${holidayApiKey}&country=${countryCode}&year=${year}&month=${month}&day=${day}`;
 
     fetch(holidayApiUrl)
     .then(response => response.json())
     .then(data => {
-        displayHolidays(data.holidays);
+        if (data && data.length > 0) {
+            displayHolidays(data);
+        } else {
+            holidayContainer.innerHTML = '<p>No holidays found for this location and date.</p>';
+        }
     })
     .catch(error => console.error('Error fetching holiday data: ', error));
+    holidayContainer.innerHTML = '<p>Error fetching holiday data.</p>';
 }
 
 function fetchWeatherData(city) {
-    const weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weatherApiKey}&units=metric`;
+    const weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weatherApiKey}&units=imperial`;
 
     fetch(weatherApiUrl)
     .then(response => response.json())
@@ -63,6 +73,24 @@ function displayWeather(weatherData) {
     weatherCity.textContent = weatherData.name;
 
     const weatherTemp = document.createElement('p');
+    weatherTemp.textContent = `Temperature: ${weatherData.main.temp} °F`;
+    weatherCard.appendChild(weatherTemp);
+
+    const condition = document.createElement('p');
+    condition.textContent = `Condition: ${weatherData.weather[0].main} (${weatherData.weather[0].description})`;
+    weatherCard.appendChild(condition);
+
+    const humidity = document.createElement('p');
+    humidity.textContent = `Humidity: ${weatherData.main.humidity}%`;
+    weatherCard.appendChild(humidity);
+
+    const windSpeed = document.createElement('p');
+    windSpeed.textContent = `Wind Speed: ${weatherData.wind.speed} mph`;
+    weatherCard.appendChild(windSpeed);
+
+    const visibility = document.createElement('p');
+    visibility.textContent = `Visibility: ${weatherData.visibility / 1000} mi`;
+    weatherCard.appendChild(visibility);
     weatherTemp.textContent = `Temperature: ${weatherData.main.temp} °C`;
 
     weatherCard.appendChild(weatherCity);
@@ -74,6 +102,12 @@ function displayWeather(weatherData) {
 submitButton.addEventListener("click", function(event) {
     event.preventDefault();
     
+    var city = inputLocation.value;
+    var countryCode = inputCountryCode.value.trim();
+
+    if (!city || !countryCode) {
+        alert("Please enter both a city and country code.");
+      
     var input = inputValue.value;
     var inputValue =JSON.parse(localStorage.getItem("location"));
 
@@ -100,8 +134,9 @@ console.log("hello")
     localStorage.setItem("inputLocation", city);
     localStorage.setItem("inputCountryCode", countryCode);
 
-    fetchHolidayData(countryCode);
     fetchWeatherData(city);
+    fetchHolidayData(countryCode);
+});
 
 function renderLastRegistered() {
     const lastCity = localStorage.getItem("inputLocation");
