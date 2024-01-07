@@ -71,7 +71,6 @@ function displayWeather(weatherData) {
 
     const weatherCity = document.createElement('h3');
     weatherCity.textContent = weatherData.name;
-    weatherCard.appendChild(weatherCity);
 
     const weatherTemp = document.createElement('p');
     weatherTemp.textContent = `Temperature: ${weatherData.main.temp} °F`;
@@ -92,7 +91,9 @@ function displayWeather(weatherData) {
     const visibility = document.createElement('p');
     visibility.textContent = `Visibility: ${weatherData.visibility / 1000} mi`;
     weatherCard.appendChild(visibility);
+    weatherTemp.textContent = `Temperature: ${weatherData.main.temp} °C`;
 
+    weatherCard.appendChild(weatherCity);
     weatherCard.appendChild(weatherTemp);
 
     weatherContainer.appendChild(weatherCard);
@@ -106,6 +107,27 @@ submitButton.addEventListener("click", function(event) {
 
     if (!city || !countryCode) {
         alert("Please enter both a city and country code.");
+      
+    var input = inputValue.value;
+    var inputValue =JSON.parse(localStorage.getItem("location"));
+
+    if (input === "") {
+        alert("Please select a location.")
+
+        localStorage.setItem("submitButton", "date");
+        renderLastRegistered();
+    }
+});
+//event listener for cards
+weatherSection.addEventListener("click", function(event) {
+    event.preventDefault();
+console.log("hello")
+    var input = weatherSection.value;
+})
+    var input = inputLocation.value;
+
+    if (input === "") {
+        alert("Please select a location.")
         return;
     }
 

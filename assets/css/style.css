@@ -1,38 +1,48 @@
-
-
-
 header {
     background-color: rgb(63, 122, 177);
     color: aliceblue;
     font-size: 3rem;
     padding: 25px;
-    border-radius: 5px;
+    width: 100%;
+}
+
+.card-input {
+    width: 100%;
+    background-color: rgb(132, 187, 204);
+    text-align: center;
+    padding: 25px;
 }
 
 .card-weather {
-    font-size: large;
-    font-family: 'Courier New', Courier, monospace;
-    background-color: rgb(125, 212, 247);
-    color: rgb(68, 68, 68);
-    margin: 20px;
-    padding: 50px;
-    border-radius: 5px;
-    border-style: double;
-    width: 200px;
+ width: 100%;
+ min-height: 400px;
+ background-color: grey;
+ margin: 5px;
 }
 
-.card-calender {
-    font-size: large;
-    font-family: 'Courier New', Courier, monospace;
-    background-color: rgb(125, 212, 247);
-    color: rgb(68, 68, 68);
-    margin: 20px;
-    padding: 50px;
-    border-radius: 5px;
-    border-style: double;
-    display:inline-block;
+.card-cal {
+height: 300px;
+background-color: grey;
+margin: px;
+float: right;
+width: 50%;
+
 }
 
+.card-upcoming {
+    width: 49%;
+height: 300px;
+    background-color: rgb(117, 117, 117);
+    float: left;
+    margin-bottom: 5px;
+}
+
+.card-hourly {
+    width: 100%;
+    float:inline-end;
+    height: 50px;
+    background-color: grey;
+}
 
 .card-weather:hover {
     font-size: large;
@@ -53,3 +63,7 @@ h2 {
     display: inline-block;  
 }
 
+footer {
+    margin-top: 50px;
+ display: inline-block;
+}
