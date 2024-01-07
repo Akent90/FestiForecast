@@ -20,7 +20,7 @@ function fetchHolidayData(countryCode) {
 }
 
 function fetchWeatherData(city) {
-    const weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weatherApiKey}&units=metric`;
+    const weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weatherApiKey}&units=imperial`;
 
     fetch(weatherApiUrl)
     .then(response => response.json())
