@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>FestiForecast</title>
-  <link rel="stylesheet" href="./assets/css/style.css">
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>FestiForecast</title>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
 
   <body>
     <header>Welcome to FestiForecast!</header>
@@ -14,15 +14,12 @@
     <main>
       <section id="inputSection" class="card card-input">
         <input type="text" id="inputLocation" placeholder="Enter your city" />
-        <input
-          type="text"
-          id="inputCountryCode"
-          placeholder="Enter country code"
-        />
         <button id="submitButton">Get Info</button>
       </section>
 
-  <main>
+      <section id="weatherSection" class="card card-weather">
+        <h2>Weather Forecast</h2>
+      </section>
 
     <section id="weatherSection" class="card card-weather">
       <head>Hourly Forecast</head>
@@ -42,9 +39,9 @@
     </main>
   </body>
 
-    <footer>
-      <p>&copy; 2024 FestiForecast</p>
-    </footer>
+  <footer>
+    <p>&copy; 2024 FestiForecast</p>
+  </footer>
 
     <script src="assets/js/script.js"></script>
     <script>//api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weatherApiKey}&units=imperial</script>
