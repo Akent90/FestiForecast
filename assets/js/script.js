@@ -71,6 +71,7 @@ function displayWeather(weatherData) {
 
     const weatherCity = document.createElement('h3');
     weatherCity.textContent = weatherData.name;
+    weatherCard.appendChild(weatherCity);
 
     const weatherTemp = document.createElement('p');
     weatherTemp.textContent = `Temperature: ${weatherData.main.temp} °F`;
@@ -91,10 +92,6 @@ function displayWeather(weatherData) {
     const visibility = document.createElement('p');
     visibility.textContent = `Visibility: ${weatherData.visibility / 1000} mi`;
     weatherCard.appendChild(visibility);
-    weatherTemp.textContent = `Temperature: ${weatherData.main.temp} °C`;
-
-    weatherCard.appendChild(weatherCity);
-    weatherCard.appendChild(weatherTemp);
 
     weatherContainer.appendChild(weatherCard);
 }
