@@ -117,7 +117,8 @@ submitButton.addEventListener("click", function(event) {
         localStorage.setItem("submitButton", "date");
         renderLastRegistered();
     }
-});
+};
+
 //event listener for cards
 weatherSection.addEventListener("click", function(event) {
     event.preventDefault();
