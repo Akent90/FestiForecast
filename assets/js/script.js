@@ -93,8 +93,6 @@ function displayWeather(weatherData) {
     visibility.textContent = `Visibility: ${weatherData.visibility / 1000} mi`;
     weatherCard.appendChild(visibility);
 
-    weatherCard.appendChild(weatherCity);
-    weatherCard.appendChild(weatherTemp);
     weatherContainer.appendChild(weatherCard);
 }
 
