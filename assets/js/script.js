@@ -257,7 +257,23 @@ const countries = [
     { code: "ZA", name: "South Africa" }, 
     { code: "ZM", name: "Zambia" }, 
     { code: "ZW", name: "Zimbabwe" }, 
-]
+];
+
+function createCountryOptions() {
+    const selectElement = document.createElement('select'); 
+    selectElement.id = 'countrySelect'; 
+
+    countries.forEach(country => {
+        const option = document.createElement('option');
+        option.value = country.code;
+        option.textContent = `${country.name} (${country.code})`;
+        selectElement.appendChild(option);
+    });
+
+    return selectElement;
+}
+
+document.getElementById('inputSection').appendChild(createCountryOptions());
 
 function fetchHolidayData(countryCode) {
     const today = new Date();
@@ -351,31 +367,10 @@ submitButton.addEventListener("click", function(event) {
     event.preventDefault();
     
     var city = inputLocation.value;
-    var countryCode = inputCountryCode.value.trim();
+    var countryCode = document.getElementById('countrySelect').value;
 
     if (!city || !countryCode) {
         alert("Please enter both a city and country code.");
-      
-    var input = inputValue.value;
-    var inputValue =JSON.parse(localStorage.getItem("location"));
-
-    if (input === "") {
-        alert("Please select a location.")
-
-        localStorage.setItem("submitButton", "date");
-        renderLastRegistered();
-    }
-};
-//event listener for cards
-weatherSection.addEventListener("click", function(event) {
-    event.preventDefault();
-console.log("hello")
-    var input = weatherSection.value;
-})
-    var input = inputLocation.value;
-
-    if (input === "") {
-        alert("Please select a location.")
         return;
     }
 
@@ -388,14 +383,14 @@ console.log("hello")
 
 function renderLastRegistered() {
     const lastCity = localStorage.getItem("inputLocation");
-    const lastCountryCode = localStorage.getItem("inoutCountryCode");
+    const lastCountryCode = localStorage.getItem("inputCountryCode");
     
     if (lastCity) {
         inputLocation.value = lastCity;
     }
 
     if (lastCountryCode) {
-        inputCountryCode.value = lastCountryCode;
+        document.getElementById('countrySelect').value = lastCountryCode;
     }
 }
 
