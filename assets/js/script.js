@@ -3,11 +3,9 @@ const weatherApiKey = 'b15a810c1209f985b7d2e24e97487aab';
 const holidayApiBaseUrl = 'https://holidays.abstractapi.com/v1/';
 
 const inputLocation = document.getElementById('inputLocation');
-const inputCountryCode = document.getElementById('inputCountryCode');
 const submitButton = document.getElementById('submitButton');
 const holidayContainer = document.getElementById('holidaySection');
 const weatherContainer = document.getElementById('weatherSection');
-
 const countries = [
     { code: "AD", name: "Andorra" },
     { code: "AE", name: "United Arab Emirates" },
@@ -273,7 +271,9 @@ function createCountryOptions() {
     return selectElement;
 }
 
-document.getElementById('inputSection').appendChild(createCountryOptions());
+const dropdown = createCountryOptions();
+const inputSection = document.getElementById('inputSection');
+inputSection.insertBefore(dropdown, submitButton);
 
 function fetchHolidayData(countryCode) {
     const today = new Date();

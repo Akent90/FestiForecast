@@ -7,10 +7,11 @@ header {
 }
 
 .card-input {
-    width: 100%;
-    background-color: rgb(132, 187, 204);
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
     padding: 25px;
+    background-color: rgb(132, 187, 204);
 }
 
 .card-weather {
