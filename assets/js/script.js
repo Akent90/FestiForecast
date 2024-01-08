@@ -319,12 +319,33 @@ function displayHolidays(holidays) {
 
         const holidayName = document.createElement('h3');
         holidayName.textContent = holiday.name;
+        holidayCard.appendChild(holidayName);
+
+        if (holiday.name_local) {
+            const holidayLocalName = document.createElement('p');
+            holidayLocalName.textContent = `Local Name: ${holiday.name_local}`;
+            holidayCard.appendChild(holidayLocalName);
+        }
+
+        if (holiday.description) {
+            const holidayDescription = document.createElement('p');
+            holidayDescription.textContent = `Description: ${holiday.description}`;
+            holidayCard.appendChild(holidayDescription);
+        }
 
         const holidayDate = document.createElement('p');
         holidayDate.textContent = `Date: ${holiday.date}`;
-
-        holidayCard.appendChild(holidayName);
         holidayCard.appendChild(holidayDate);
+
+        if (holiday.type) {
+            const holidayType = document.createElement('p');
+            holidayType.textContent = `Type: ${holiday.type}`;
+            holidayCard.appendChild(holidayType);
+        }
+
+        const holidayWeekDay = document.createElement('p');
+        holidayWeekDay.textContent = `Day of the Week: ${holiday.week_day}`;
+        holidayCard.appendChild(holidayWeekDay);
 
         holidayContainer.appendChild(holidayCard);
     });
