@@ -7,10 +7,11 @@ header {
 }
 
 .card-input {
-    width: 100%;
-    background-color: rgb(132, 187, 204);
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
     padding: 25px;
+    background-color: rgb(132, 187, 204);
 }
 
 .card-weather {
@@ -39,14 +40,6 @@ width: 50%;
     width: 100%;
     height: 50px;
     background-color: grey;
-}
-
-.card-weather:hover {
-    font-size: large;
-    font-family: 'Courier New', Courier, monospace;
-    background-color: rgb(196, 227, 255);
-    color: rgb(68, 68, 68);
-    cursor: pointer;
 }
 
 h1 {
