@@ -42,14 +42,6 @@ width: 50%;
     background-color: grey;
 }
 
-.card-weather:hover {
-    font-size: large;
-    font-family: 'Courier New', Courier, monospace;
-    background-color: rgb(196, 227, 255);
-    color: rgb(68, 68, 68);
-    cursor: pointer;
-}
-
 h1 {
     font-size: large;
     font-family: 'Courier New', Courier, monospace;
