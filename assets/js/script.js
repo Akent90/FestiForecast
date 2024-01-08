@@ -98,7 +98,7 @@ function displayWeather(weatherData) {
 
     weatherContainer.appendChild(weatherCard);
 }
-
+//event listener for weather and holiday api to show
 submitButton.addEventListener("click", function(event) {
     event.preventDefault();
     
