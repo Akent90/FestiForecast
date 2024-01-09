@@ -1,11 +1,10 @@
-const holidayApiKey = '72692923c82f4befb8992bd2ff4d81bb';
+const holidayApiKey = 'eeda4a344e9748fe94ca5ff4241cef15';
 const weatherApiKey = 'b15a810c1209f985b7d2e24e97487aab';
 const holidayApiBaseUrl = 'https://holidays.abstractapi.com/v1/';
 
 const inputLocation = document.getElementById('inputLocation');
 const submitButton = document.getElementById('submitButton');
 const holidayContainer = document.getElementById('holidaySection');
-const weatherContainer = document.getElementById('weatherSection');
 const currentWeatherDiv = document.getElementById('currentWeather');
 const forecastDiv = document.getElementById('forecast');
 const countries = [
@@ -279,7 +278,6 @@ inputSection.insertBefore(dropdown, submitButton);
 
 function fetchCoordinates(cityName) {
     const url = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${weatherApiKey}`;
-
     fetch(url)
         .then(response => response.json())
         .then(data => {
@@ -292,171 +290,181 @@ function fetchCoordinates(cityName) {
         })
         .catch(error => console.error('Error:', error));
 }
-
+   
 function fetchWeather(lat, lon, cityName) {
     fetchCurrentWeather(lat, lon, cityName);
     fetchForecast(lat, lon);
 }
-
+   
 function fetchCurrentWeather(lat, lon, cityName) {
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${weatherApiKey}&units=imperial`;
-
     fetch(url)
         .then(response => response.json())
-        .then(data => {
-            displayCurrentWeather(data);
-        })
+        .then(data => displayCurrentWeather(data))
         .catch(error => console.error('Error:', error));
 }
-
+   
 function fetchForecast(lat, lon) {
     const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${weatherApiKey}&units=imperial`;
-    
     fetch(url)
         .then(response => response.json())
-        .then(data => {
-            displayForecast(data);
-        })
+        .then(data => displayForecast(data))
         .catch(error => console.error('Error:', error));
 }
-
+   
 function displayCurrentWeather(data) {
     const date = new Date().toLocaleDateString();
     const iconUrl = `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
-
     currentWeatherDiv.innerHTML = `
-        <h3>Current Weather in ${data.name} (${date})</h3>
-        <img src="${iconUrl}" alt="Weather Icon"
-        <p>Temperature: ${data.main.temp} °F</p>
-        <p>Humidity: ${data.main.humidity}%</p>
-        <p>Wind Speed: ${data.wind.speed} mph</p>
-    `;
+    <h3>Current Weather in ${data.name} (${date})</h3>
+    <img src="${iconUrl}" alt="Weather Icon">
+    <p>Temperature: ${data.main.temp} °F</p>
+    <p>Humidity: ${data.main.humidity}%</p>
+    <p>Wind Speed: ${data.wind.speed} mph</p>`;
 }
-
-function displayForecast(data) {
+   
+   function displayForecast(data) {
     let forecastHTML = '<h3>5-Day Forecast</h3>';
     data.list.forEach((forecast, index) => {
-        if (index % 8 === 0) {
-            const date = new Date(forecast.dt_txt).toLocaleDateString();
-            const iconUrl = `https://openweathermap.org/img/wn/${forecast.weather[0].icon}.png`;
+        if (index % 8 === 0) { 
+            const date = new Date(forecast.dt_txt);
+            const dateString = date.toLocaleDateString();
+            const dataAttribute = date.toISOString().split('T')[0]; 
 
             forecastHTML += `
-                <div>
-                    <h4>${date}</h4>
-                    <img src="${iconUrl}" alt="Weather Icon">
-                    <p>Temp: ${forecast.main.temp} °F</p>
-                    <p>Humidity: ${forecast.main.humidity}%</p>
-                    <p>Wind Speed: ${forecast.wind.speed} mph</p>
-                </div>
+            <div class="forecast-day" data-date="${dataAttribute}">
+                <h4>${dateString}</h4>
+                <img src="https://openweathermap.org/img/wn/${forecast.weather[0].icon}.png" alt="Weather Icon">
+                <p>Temp: ${forecast.main.temp} °F</p>
+                <p>Humidity: ${forecast.main.humidity}%</p>
+                <p>Wind Speed: ${forecast.wind.speed} mph</p>
+            </div>
             `;
         }
     });
+
     forecastDiv.innerHTML = forecastHTML;
-}
 
-function fetchHolidayData(countryCode) {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, '0');
-
-    const holidayApiUrl = `${holidayApiBaseUrl}?api_key=${holidayApiKey}&country=${countryCode}&year=${year}&month=${month}`;
-
-    fetch(holidayApiUrl)
-    .then(response => response.json())
-    .then(data => {
-        if (data && data.length > 0) {
-            const upcomingHolidays = filterUpcomingHolidays(data);
-            displayHolidays(upcomingHolidays);
-        } else {
-            holidayContainer.innerHTML = '<p>No holidays found for this month.</p>';
-        }
-    })
-    .catch(error => console.error('Error fetching holiday data: ', error));
-}
-
-function filterUpcomingHolidays(holidays) {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    const fiveDaysLater = new Date(today);
-    fiveDaysLater.setDate(today.getDate() + 5);
-
-    return holidays.filter(holiday => {
-        const holidayDate = new Date(holiday.date);
-        return holidayDate >= today && holidayDate <= fiveDaysLater;
+    document.querySelectorAll('.forecast-day').forEach(element => {
+        element.addEventListener('click', function() {
+            const selectedDate = this.getAttribute('data-date');
+            const countryCode = document.getElementById('countrySelect').value;
+            fetchHolidayDataForDate(countryCode, selectedDate);
+        });
     });
 }
 
-
+function fetchHolidayDataForDate(countryCode, date) {
+    const [year, month, day] = date.split('-');
+    const holidayApiUrl = `${holidayApiBaseUrl}?api_key=${holidayApiKey}&country=${countryCode}&year=${year}&month=${month}&day=${day}`;
+    fetch(holidayApiUrl)
+        .then(response => response.json())
+        .then(data => {
+            if (data && data.length > 0) {
+                displayHolidays(data);
+            } else {
+                holidayContainer.innerHTML = '<p>No holidays found for this date.</p>';
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching holiday data: ', error);
+            holidayContainer.innerHTML = '<p>Error fetching holiday data.</p>';
+        });
+}
+   
+function fetchHolidayData(countryCode) {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0'); 
+    const day = String(today.getDate()).padStart(2, '0');
+    const holidayApiUrl = `${holidayApiBaseUrl}?api_key=${holidayApiKey}&country=${countryCode}&year=${year}&month=${month}&day=${day}`;
+    fetch(holidayApiUrl)
+        .then(response => response.json())
+        .then(data => {
+            if (data && data.length > 0) {
+                displayHolidays(data);
+            } else {
+                holidayContainer.innerHTML = '<p>No holidays found for this location and date.</p>';
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching holiday data: ', error);
+            holidayContainer.innerHTML = '<p>Error fetching holiday data.</p>';
+        });
+}
+   
 function displayHolidays(holidays) {
     holidayContainer.innerHTML = '';
-
     if (holidays.length === 0) {
         holidayContainer.innerHTML = '<p>No holidays found for this location and year.</p>';
         return;
     }
-
     holidays.forEach(holiday => {
         const holidayCard = document.createElement('div');
         holidayCard.className = 'card';
-
         const holidayName = document.createElement('h3');
         holidayName.textContent = holiday.name;
         holidayCard.appendChild(holidayName);
-
         if (holiday.name_local) {
-            const holidayLocalName = document.createElement('p');
-            holidayLocalName.textContent = `Local Name: ${holiday.name_local}`;
-            holidayCard.appendChild(holidayLocalName);
+            const localName = document.createElement('p');
+            localName.textContent = `Local Name: ${holiday.name_local}`;
+            holidayCard.appendChild(localName);
         }
-
         if (holiday.description) {
-            const holidayDescription = document.createElement('p');
-            holidayDescription.textContent = `Description: ${holiday.description}`;
-            holidayCard.appendChild(holidayDescription);
+            const description = document.createElement('p');
+            description.textContent = `Description: ${holiday.description}`;
+            holidayCard.appendChild(description);
         }
-
-        const holidayDate = document.createElement('p');
-        holidayDate.textContent = `Date: ${holiday.date}`;
-        holidayCard.appendChild(holidayDate);
-
-        if (holiday.type) {
-            const holidayType = document.createElement('p');
-            holidayType.textContent = `Type: ${holiday.type}`;
-            holidayCard.appendChild(holidayType);
-        }
-
-        const holidayWeekDay = document.createElement('p');
-        holidayWeekDay.textContent = `Day of the Week: ${holiday.week_day}`;
-        holidayCard.appendChild(holidayWeekDay);
-
+        const country = document.createElement('p');
+        country.textContent = `Country: ${holiday.country}`;
+        holidayCard.appendChild(country);
+        const location = document.createElement('p');
+        location.textContent = `Location: ${holiday.location}`;
+        holidayCard.appendChild(location);
+        const type = document.createElement('p');
+        type.textContent = `Type: ${holiday.type}`;
+        holidayCard.appendChild(type);
+        const date = document.createElement('p');
+        date.textContent = `Date: ${holiday.date}`;
+        holidayCard.appendChild(date);
+        const dayOfWeek = document.createElement('p');
+        dayOfWeek.textContent = `Day of the Week: ${holiday.week_day}`;
+        holidayCard.appendChild(dayOfWeek);
         holidayContainer.appendChild(holidayCard);
     });
 }
 
-submitButton.addEventListener("click", function(event) {
+document.getElementById('submitButton').addEventListener('click', function(event) {
     event.preventDefault();
-    
-    var city = inputLocation.value;
-    var countryCode = document.getElementById('countrySelect').value;
+    const city = document.getElementById('inputLocation').value.trim();
+    const countryCodeSelect = document.getElementById('countrySelect');
+    const countryCode = countryCodeSelect ? countryCodeSelect.value : 'US';
+    if (city) {
+        fetchCoordinates(city);
+    } else {
+        alert("Please enter a city name.");
+    }
+});
 
-    if (!city || !countryCode) {
-        alert("Please enter both a city and country code.");
+document.getElementById('dateSubmitButton').addEventListener('click', function(event) {
+    event.preventDefault();
+    const month = document.getElementById('inputMonth').value;
+    const day = document.getElementById('inputDay').value;
+    const year = document.getElementById('inputYear').value;
+    const countryCode = document.getElementById('countrySelect').value;
+    if (!month || !day || !year) {
+        alert("Please enter a valid date.");
         return;
     }
-
-    fetchCoordinates(city); // Updated to call fetchCoordinates instead of fetchWeatherData
-    fetchHolidayData(countryCode);
+    fetchHolidayDataForDate(countryCode, `${year}-${month}-${day}`);
 });
 
 function renderLastRegistered() {
     const lastCity = localStorage.getItem("inputLocation");
     const lastCountryCode = localStorage.getItem("inputCountryCode");
-    
     if (lastCity) {
         inputLocation.value = lastCity;
     }
-
     if (lastCountryCode) {
         document.getElementById('countrySelect').value = lastCountryCode;
     }
