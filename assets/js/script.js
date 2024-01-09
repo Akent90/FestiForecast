@@ -360,6 +360,25 @@ function displayForecast(data) {
     });
 }
 
+function fetchHolidayDataForDate(countryCode, date) {
+    const [year, month, day] = date.split('-');
+    const holidayApiUrl = `${holidayApiBaseUrl}?api_key=${holidayApiKey}&country=${countryCode}&year=${year}&month=${month}&day=${day}`;
+
+    fetch(holidayApiUrl)
+        .then(response => response.json())
+        .then(data => {
+            if (data && data.length > 0) {
+                displayHolidays(data);
+            } else {
+                holidayContainer.innerHTML = '<p>No holidays found for this date.</p>';
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching holiday data: ', error);
+            holidayContainer.innerHTML = '<p>Error fetching holiday data.</p>';
+        });
+}
+
 function fetchHolidayData(countryCode) {
     const today = new Date();
     const year = today.getFullYear();
