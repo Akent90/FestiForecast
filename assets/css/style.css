@@ -6,6 +6,12 @@ header {
   width: 100%;
 }
 
+img {
+  width: 103%;
+  height: 200px;
+  margin-top: 5px;
+}
+
 .card-input {
   display: flex;
   justify-content: space-between;
@@ -17,23 +23,20 @@ header {
 .card-weather {
 width: 100%;
 min-height: 400px;
-background-color: grey;
-margin: 5px;
-}
-
-.card-cal {
-height: 300px;
-background-color: grey;
-margin: 5px;
-width: 50%;
-
+background-color: rgb(92, 158, 189);
+text-align: center;
+color: aliceblue;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .card-upcoming {
   width: 49%;
   height: 300px;
-  background-color: rgb(117, 117, 117);
+  background-color: rgb(105, 130, 177);
   margin-bottom: 5px;
+  text-align: center;
+color: aliceblue;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .card-hourly {
