@@ -4,39 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <script src="https://cdn.tailwindcss.com"></script>
     <title>FestiForecast</title>
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
 
   <body>
-    <header class="font-bold">Welcome to FestiForecast!</header>
+    <header>Welcome to FestiForecast!</header>
+
     <main>
       <section id="inputSection" class="card card-input">
         <input type="text" id="inputLocation" placeholder="Enter your city" />
-        <button id="submitButton" class="submit-button">Get Info</button>
+        <button id="submitButton">Get Info</button>
       </section>
 
-      <section id="currentWeather" class="card card-weather">
-        <h2>Current Weather</h2>
-      </section>
-
-      <section id="forecast" class="card card-weather">
-        <h2>5-Day Forecast</h2>
-   
       <section id="weatherSection" class="card card-weather">
-        <h2 class="font-semibold">Weather Forecast</h2>
+        <h2>Weather Forecast</h2>
       </section>
 
       <section id="holidaySection" class="card card-upcoming">
-        <h2 class="font-semibold">Upcoming Holidays</h2>
+        <h2>Upcoming Holidays</h2>
       </section>
     </main>
-
-    <footer>
-      <p>&copy; 2024 FestiForecast</p>
-    </footer>
-
-    <script src="assets/js/script.js"></script>
   </body>
+
+  <footer>
+    <p>&copy; 2024 FestiForecast</p>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
 </html>
