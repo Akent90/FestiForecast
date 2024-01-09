@@ -300,14 +300,11 @@ function fetchWeather(lat, lon, cityName) {
 
 function fetchCurrentWeather(lat, lon, cityName) {
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${weatherApiKey}&units=imperial`;
-    
+
     fetch(url)
         .then(response => response.json())
         .then(data => {
             displayCurrentWeather(data);
-            if (!cityAlreadyInHistory(cityName)) {
-                addToHistory(cityName);
-            }
         })
         .catch(error => console.error('Error:', error));
 }
@@ -360,22 +357,34 @@ function displayForecast(data) {
 function fetchHolidayData(countryCode) {
     const today = new Date();
     const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, '0'); 
-    const day = String(today.getDate()).padStart(2, '0');
+    const month = String(today.getMonth() + 1).padStart(2, '0');
 
-    const holidayApiUrl = `${holidayApiBaseUrl}?api_key=${holidayApiKey}&country=${countryCode}&year=${year}&month=${month}&day=${day}`;
+    const holidayApiUrl = `${holidayApiBaseUrl}?api_key=${holidayApiKey}&country=${countryCode}&year=${year}&month=${month}`;
 
     fetch(holidayApiUrl)
     .then(response => response.json())
     .then(data => {
         if (data && data.length > 0) {
-            displayHolidays(data);
+            const upcomingHolidays = filterUpcomingHolidays(data);
+            displayHolidays(upcomingHolidays);
         } else {
-            holidayContainer.innerHTML = '<p>No holidays found for this location and date.</p>';
+            holidayContainer.innerHTML = '<p>No holidays found for this month.</p>';
         }
     })
     .catch(error => console.error('Error fetching holiday data: ', error));
-    holidayContainer.innerHTML = '<p>Error fetching holiday data.</p>';
+}
+
+function filterUpcomingHolidays(holidays) {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const fiveDaysLater = new Date(today);
+    fiveDaysLater.setDate(today.getDate() + 5);
+
+    return holidays.filter(holiday => {
+        const holidayDate = new Date(holiday.date);
+        return holidayDate >= today && holidayDate <= fiveDaysLater;
+    });
 }
 
 
