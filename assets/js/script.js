@@ -1,4 +1,4 @@
-const holidayApiKey = 'f219ccee11c84093ac709d7de3de5010';
+const holidayApiKey = '72692923c82f4befb8992bd2ff4d81bb';
 const weatherApiKey = 'b15a810c1209f985b7d2e24e97487aab';
 const holidayApiBaseUrl = 'https://holidays.abstractapi.com/v1/';
 
