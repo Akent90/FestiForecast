@@ -383,7 +383,7 @@ function displayWeather(weatherData) {
 
     weatherContainer.appendChild(weatherCard);
 }
-//event listener for weather and holiday api to show
+
 submitButton.addEventListener("click", function(event) {
     event.preventDefault();
     
@@ -392,28 +392,6 @@ submitButton.addEventListener("click", function(event) {
 
     if (!city || !countryCode) {
         alert("Please enter both a city and country code.");
-      
-    var input = inputValue.value;
-    var inputValue =JSON.parse(localStorage.getItem("location"));
-
-    if (input === "") {
-        alert("Please select a location.")
-
-        localStorage.setItem("submitButton", "date");
-        renderLastRegistered();
-    }
-};
-
-//event listener for cards
-weatherSection.addEventListener("click", function(event) {
-    event.preventDefault();
-console.log("hello")
-    var input = weatherSection.value;
-})
-    var input = inputLocation.value;
-
-    if (input === "") {
-        alert("Please select a location.")
         return;
     }
 
