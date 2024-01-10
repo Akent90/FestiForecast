@@ -1,3 +1,42 @@
+header {
+  text-align: center;
+  background-color: rgb(63, 122, 177);
+  color: aliceblue;
+  font-size: 3rem;
+  padding: 25px;
+  width: flex;
+}
+
+.card-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px;
+  background-color: rgb(104, 158, 175);
+  width: flex;
+  border-radius: 10px;
+  margin: 5px;
+}
+
+.card-alert{
+  background-color: rgb(185, 106, 116);
+  border-radius: 10px;
+  margin: 5px;
+  text-align: center;
+  color: azure;
+}
+
+.card-input2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px;
+  background-color: rgb(104, 111, 175);
+  width: flex;
+  border-radius: 10px;
+  margin: 5px;
+}
+
 .card-weather {
   width: flex;
   min-height: 200px;
@@ -32,7 +71,7 @@
   border-radius: 10px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 40px;
+  gap: 20px;
   height: 225px;
 }
 
