@@ -1,3 +1,30 @@
+const holidayApiKey = '52dd97a0-dca8-4f8a-bded-86b768341680';
+const weatherApiKey = 'b15a810c1209f985b7d2e24e97487aab';
+
+const inputLocation = document.getElementById('inputLocation');
+const inputCountryCode = document.getElementById('inputCountryCode');
+const submitButton = document.getElementById('submitButton');
+const holidayContainer = document.getElementById('holidaySection');
+const weatherContainer = document.getElementById('weatherSection');
+
+function fetchHolidayData(countryCode) {
+const holidayApiKey = 'f219ccee11c84093ac709d7de3de5010';
+const weatherApiKey = 'b15a810c1209f985b7d2e24e97487aab';
+const holidayApiBaseUrl = 'https://holidays.abstractapi.com/v1/';
+
+const inputLocation = document.getElementById('inputLocation');
+const inputCountryCode = document.getElementById('inputCountryCode');
+const submitButton = document.getElementById('submitButton');
+const holidayContainer = document.getElementById('holidaySection');
+const weatherContainer = document.getElementById('weatherSection');
+
+function fetchHolidayData(countryCode) {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0'); 
+    const day = String(today.getDate()).padStart(2, '0');
+
+    const holidayApiUrl = `${holidayApiBaseUrl}?api_key=${holidayApiKey}&country=${countryCode}&year=${year}&month=${month}&day=${day}`;
 const holidayApiKey = 'eeda4a344e9748fe94ca5ff4241cef15';
 const weatherApiKey = 'b15a810c1209f985b7d2e24e97487aab';
 const holidayApiBaseUrl = 'https://holidays.abstractapi.com/v1/';
@@ -330,6 +357,7 @@ function displayCurrentWeather(data) {
  
 function displayForecast(data) {
     let forecastHTML = '<h3>5 Day Forecast</h3>';
+    
     data.list.forEach((forecast, index) => {
         if (index % 8 === 0) {
             const date = new Date(forecast.dt_txt);
@@ -357,25 +385,6 @@ function displayForecast(data) {
             fetchHolidayDataForDate(countryCode, selectedDate);
         });
     });
-}
-
-function fetchHolidayDataForDate(countryCode, date) {
-    const [year, month, day] = date.split('-');
-    const holidayApiUrl = `${holidayApiBaseUrl}?api_key=${holidayApiKey}&country=${countryCode}&year=${year}&month=${month}&day=${day}`;
-
-    fetch(holidayApiUrl)
-        .then(response => response.json())
-        .then(data => {
-            if (data && data.length > 0) {
-                displayHolidays(data);
-            } else {
-                holidayContainer.innerHTML = '<p>No holidays found for this date.</p>';
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching holiday data: ', error);
-            holidayContainer.innerHTML = '<p>Error fetching holiday data.</p>';
-        });
 }
 
 function fetchHolidayData(countryCode) {
