@@ -329,8 +329,7 @@ function displayCurrentWeather(data) {
 }
  
 function displayForecast(data) {
-    let forecastHTML = '<h3>5-Day Forecast</h3>';
-    
+    let forecastHTML = '<h3>5 Day Forecast</h3>';
     data.list.forEach((forecast, index) => {
         if (index % 8 === 0) {
             const date = new Date(forecast.dt_txt);
@@ -358,6 +357,25 @@ function displayForecast(data) {
             fetchHolidayDataForDate(countryCode, selectedDate);
         });
     });
+}
+
+function fetchHolidayDataForDate(countryCode, date) {
+    const [year, month, day] = date.split('-');
+    const holidayApiUrl = `${holidayApiBaseUrl}?api_key=${holidayApiKey}&country=${countryCode}&year=${year}&month=${month}&day=${day}`;
+
+    fetch(holidayApiUrl)
+        .then(response => response.json())
+        .then(data => {
+            if (data && data.length > 0) {
+                displayHolidays(data);
+            } else {
+                holidayContainer.innerHTML = '<p>No holidays found for this date.</p>';
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching holiday data: ', error);
+            holidayContainer.innerHTML = '<p>Error fetching holiday data.</p>';
+        });
 }
 
 function fetchHolidayData(countryCode) {
