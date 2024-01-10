@@ -4,32 +4,67 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>FestiForecast</title>
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
 
   <body>
-    <header>Welcome to FestiForecast!</header>
-
+    <header class="font-bold">Welcome to FestiForecast!</header>
     <main>
       <section id="inputSection" class="card card-input">
         <input type="text" id="inputLocation" placeholder="Enter your city" />
-        <button id="submitButton">Get Info</button>
+        <button id="submitButton" class="submit-button">Get Info</button>
+      </section>
+<section id="holiday-alert" class="card card-alert">
+      <p> If your travels are beyond the predicted forecast,
+         pick a date below to generate the upcoming holiday information</p>
+        </section>
+      <section id="dateInputSection" class="card card-input2">
+
+      <section id="dateInputSection" class="card card-input">
+        <input type="text" id="inputMonth" placeholder="Month (MM)" />
+        <input type="text" id="inputDay" placeholder="Day (DD)" />
+        <input type="text" id="inputYear" placeholder="Year (YYYY)" />
+        <button id="dateSubmitButton" class="submit-button">
+          Get Holidays
+        </button>
       </section>
 
-      <section id="weatherSection" class="card card-weather">
-        <h2>Weather Forecast</h2>
+      <section id="currentWeather" class="card card-weather">
+        <h2>Current Weather</h2>
+      </section>
+
+      <section id="forecast" class="card card-weather">
+        <h2>5-Day Forecast</h2>
       </section>
 
       <section id="holidaySection" class="card card-upcoming">
-        <h2>Upcoming Holidays</h2>
+        <h2 class="font-semibold">Upcoming Holidays</h2>
       </section>
+
+      <section id="forecast" class="card card-5day">
+        <h2>5 Day Forecast</h2>
+        <ul class="forecast-cards">
+          <li class="card">  
+          </li>
+        </ul>
+      </section>
+
     </main>
+
+    <footer>
+      <p>&copy; 2024 FestiForecast</p>
+    </footer>
+
+    <div id="modal" class="hidden">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <p id="modal-text"></p>
+      </div>
+    </div>
+
+    <script src="assets/js/script.js"></script>
   </body>
-
-  <footer>
-    <p>&copy; 2024 FestiForecast</p>
-  </footer>
-
-  <script src="assets/js/script.js"></script>
 </html>
+
