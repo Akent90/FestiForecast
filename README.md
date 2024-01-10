@@ -4,7 +4,12 @@ FestiForecast is a web app used to learn about different areas you may be travel
 
 ## Usage
 
-When opened you will see a search bar that you can type in any location you want to know about. After you enter a place press the get info button the forecast and upcoming holidays will be brought up on your screen.
+When opened you will see an "Enter your city" search bar this is where you will search for the desired location you want to know about. After you enter your city find the country code for your city in the drop down menu next to it. After these are filled out you can hit the "Get info" button where you will be given the current day weather and a five day forecast.
+Once you are given the forecast you can click on any one of them to quickly find out about any holidays that might be taking place on the day of the forecast you chose. 
+If you want to know about other holidays for future reference there is a "Month, Day, and Year" search bar where you can type in dates accordingly to find out about holidays on the specific day you chose.
+
+## Link 
+https://akent90.github.io/FestiForecast/
 
 ## Credits 
 
