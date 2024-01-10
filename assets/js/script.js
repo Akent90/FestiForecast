@@ -329,8 +329,7 @@ function displayCurrentWeather(data) {
 }
  
 function displayForecast(data) {
-    let forecastHTML = '<h3>5-Day Forecast</h3>';
-    
+    let forecastHTML = '<h3>5 Day Forecast</h3>';
     data.list.forEach((forecast, index) => {
         if (index % 8 === 0) {
             const date = new Date(forecast.dt_txt);
